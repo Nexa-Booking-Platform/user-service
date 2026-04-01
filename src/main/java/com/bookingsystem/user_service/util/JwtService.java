@@ -2,9 +2,11 @@ package com.bookingsystem.user_service.util;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Service
 public class JwtService {
 
     private final String SECRET = "my-secret-key-123456";
