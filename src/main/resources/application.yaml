@@ -5,18 +5,14 @@ spring:
   application:
     name: user-service
 
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:http://${CONFIG_SERVER_USER:configuser}:${CONFIG_SERVER_PASSWORD:configpass}@localhost:8888
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/users_db
-    username: postgres
-    password: password
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+jwt:
+  secret: ${JWT_SECRET:default-very-long-secret-key-at-least-256-bits-long-for-hmac-sha256}
 
 eureka:
   client:
