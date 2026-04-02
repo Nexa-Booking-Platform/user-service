@@ -7,20 +7,17 @@ import com.bookingsystem.user_service.entity.User;
 import com.bookingsystem.user_service.repository.UserRepository;
 import com.bookingsystem.user_service.service.AuthService;
 import com.bookingsystem.user_service.util.JwtService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
     private final JwtService jwtService;
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-    public AuthServiceImpl(UserRepository userRepository, JwtService jwtService) {
-        this.userRepository = userRepository;
-        this.jwtService = jwtService;
-    }
+    private final PasswordEncoder encoder;
 
     @Override
     public AuthResponse register(RegisterRequest request) {
